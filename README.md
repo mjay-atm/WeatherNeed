@@ -1,2 +1,14 @@
-# WeatherNeed
-A weather application about our life. Using meteorological open data &amp; GPT to create some feature. Now, this version is being developed for 2023 Weather Hackathon in Taiwan.
+# Weather GPT Usage
+
+## 1. Install packages
+```
+pip install -r requirements.txt
+```
+
+## 2. Run script
+```
+python3 main.py
+```
+
+## 3. Open link
+[http://127.0.0.1:7860](http://127.0.0.1:7860)
