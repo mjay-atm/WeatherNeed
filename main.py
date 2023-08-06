@@ -3,7 +3,7 @@ import os
 import openai
 import tiktoken
 from dotenv import load_dotenv  # install python_dotenv
-from utils import city_report, taiwan_report
+from utils import city_report, taiwan_report, load_topic
 
 
 ############ env setting ####################################
@@ -25,6 +25,7 @@ normal_conversation_history = []
 
 ############ load city information ##########################
 save_dir = '小幫手資料'
+topic_dir = 'topic'
 no_list = [str(i).zfill(3) for i in range(9, 31)]
 dic_city2no = {}
 with open(f'city_list.txt', 'r') as f:
@@ -121,14 +122,17 @@ def generate_lifetopic_report(city_choose2, topic_choose, chat_history):
     #global conversation_history
     conversation_history = []
     r1 = city_report(WEATHER_API_KEY, save_dir, city_choose2, dic_city2no)
+    topic_question = load_topic(topic_choose, topic_dir)
     system_message = f"""
     I'm WeatherNeed, and following was the weather report today:
     1. weather report of {city_choose2} (a city in Taiwan): {r1}
-    2. 「食」、「衣」、「住」、「行」、「育」、「樂」，是人類生活的六大面向
+    2. 「食」、「衣」、「住」、「行」、「教育」、「樂」，是人類生活的六大面向
     """
     conversation_history.append({"role": "system", "content": system_message})
     prompt = f"""
-    According to today's {city_choose2}'s weather report, come up with three questions about "{topic_choose}" that are sufficiently different from each other, and answer them in the following format:
+    {topic_question}
+    According to today's {city_choose2}'s weather report, come up with three questions about "{topic_choose}" that are sufficiently different from each other,
+    and you mustn't copy the example questions. Then answer them in the following format:
     根據{city_choose2}今天的天氣資訊，以下是三個關於「{topic_choose}」的問題以及相應的回答：
     1.問題：
       答案：
@@ -142,7 +146,7 @@ def generate_lifetopic_report(city_choose2, topic_choose, chat_history):
     completions = openai.ChatCompletion.create(
         model='gpt-3.5-turbo',
         # engine=choosen_engine,
-        temperature=0.3,
+        temperature=0.5,
         messages=conversation_history
     )
     response = completions.choices[0].message.content
