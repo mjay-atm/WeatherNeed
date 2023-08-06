@@ -2,3 +2,4 @@ temp/
 __pycache__/
 小幫手資料/
 .env
+push.sh
