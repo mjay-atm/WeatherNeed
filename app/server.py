@@ -8,7 +8,7 @@ from app.main import generate_response, generate_city_report, generate_taiwan_re
 app = FastAPI()
 
 origins = [
-    "http://localhost:5000",
+    "http://localhost:5500",
     "https://weather-need.n0b.me"
 ]
 
