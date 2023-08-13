@@ -41,13 +41,23 @@ def taiwan_report(WEATHER_API_KEY, save_dir):
         print(article, file = f)
 
     return article
+
+
+def load_topic(topic, topic_dir):
+
+    article = ''
+    with open(f'{topic_dir}/{topic}.txt', 'r') as f:
+        for i, line in enumerate(f.readlines()):
+            article += line
+
+    return article
     
 
 if __name__ == '__main__':
     
     load_dotenv()
     WEATHER_API_KEY = os.environ["WEATHER_API_KEY"]
-    save_dir = '小幫手資料'
+    save_dir = 'topic'
     
     no_list = [str(i).zfill(3) for i in range(9, 31)]
     #print(no_list)
@@ -60,5 +70,6 @@ if __name__ == '__main__':
     
     city = '台北市'
     city_no = dic_city2no[city]
-    city_report(WEATHER_API_KEY, save_dir, city, dic_city2no)
-    taiwan_report(WEATHER_API_KEY, save_dir)
+    #city_report(WEATHER_API_KEY, save_dir, city, dic_city2no)
+    #taiwan_report(WEATHER_API_KEY, save_dir)
+    load_topic('食', save_dir)
