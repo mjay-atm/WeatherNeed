@@ -24,7 +24,7 @@ normal_conversation_history = []
 
 
 ############ load city information ##########################
-save_dir = '小幫手資料'
+save_dir = 'CWB_Weather_Report'
 topic_dir = 'topic'
 no_list = [str(i).zfill(3) for i in range(9, 31)]
 dic_city2no = {}

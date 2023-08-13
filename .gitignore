@@ -1,5 +1,5 @@
 temp/
 __pycache__/
-小幫手資料/
+CWB_Weather_Report/*.txt
 .env
 push.sh
