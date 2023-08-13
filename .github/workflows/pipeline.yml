@@ -43,4 +43,4 @@ jobs:
           host: ${{ secrets.STAGE_HOST }}
           username: ${{ secrets.STAGE_USER }}
           key: ${{ secrets.STAGE_KEY }}
-          script: ls -al
+          script: cd ${{ env.IMG_NAME }} && docker compose down && docker compose up --build -d

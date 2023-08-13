@@ -3,7 +3,7 @@ import os
 import openai
 import tiktoken
 from dotenv import load_dotenv  # install python_dotenv
-from utils import city_report, taiwan_report, load_topic
+from app.utils import city_report, taiwan_report, load_topic
 
 
 ############ env setting ####################################
