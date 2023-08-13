@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    list-style: none;
 }
 
 header {
@@ -15,7 +16,7 @@ header {
 main {
     position: absolute;
     top: 20%;
-    height: 60%;
+    height: 50%;
     width: 100vw;
     overflow: scroll;
 }
@@ -24,7 +25,7 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 10%;
+    height: 20%;
     width: 100vw;
     margin-bottom: 1.5rem;
 }
@@ -58,6 +59,42 @@ input[type=text] {
 .footer-item {
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+.container {
+    width: 80%;
+}
+
+.list {
+    border-bottom: none;
+}
+
+.list-item {
+    border-bottom: 1px solid rgba(209, 141, 180, 0.50);
+    padding: 1rem;
+    text-align: center;
+    color: #132847;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.d-op {
+    opacity: 0;
+}
+
+.border-none {
+    border: none !important;
 }
 
 .chat-item {
@@ -105,6 +142,18 @@ input[type=text] {
     display: block;
 }
 
+.response {
+    border-radius: 15px;
+    background: linear-gradient(131deg, rgba(209, 141, 180, 0.15) 0%, rgba(139, 104, 172, 0.15) 100%), #FFF;
+    box-shadow: 5px 10px 50px 5px rgba(139, 104, 172, 0.15);
+    backdrop-filter: blur(25px);
+    transition: 1s;
+}
+
+.choice-drop {
+    transform: translateY(100vh);
+}
+
 #back-arrow {
     margin-left: 1rem;
     margin-top: 2.5rem;
@@ -118,6 +167,8 @@ input[type=text] {
     border-radius: 50%;
     justify-content: center;
     align-items: center;
+    fill: #8B68AC;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #submit-btn {
@@ -131,7 +182,16 @@ input[type=text] {
 
 #footer-container {
     height: 100%;
-    width: 100%;
+}
+
+#footer-choice {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
+#footer-type {
+    height: calc(100% - 70px);
     display: flex;
     justify-content: end;
     align-items: center;
@@ -151,4 +211,18 @@ input[type=text] {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: -0.5px;
+}
+
+#choice-response {
+    background-color: rgba(0, 0, 0, 0.10);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
 }
