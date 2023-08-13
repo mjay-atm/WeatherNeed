@@ -43,8 +43,8 @@ function disableChoice() {
     const choice = document.getElementById('choice-response');
     const choiceField = document.getElementById('choice-response-field');
 
-    choice.classList.add('d-op');
     choice.style.zIndex = -999;
+    choice.classList.add('d-op');
     choiceField.classList.add('choice-drop');
 
 }
