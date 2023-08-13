@@ -24,7 +24,7 @@ function choice(item) {
         }
         
         result[item].forEach( e => {
-            ul_data += `<li class="list-item">${e}</li>`
+            ul_data += `<li class="list-item" onclick="disableChoice();askQuestion('${e}');">${e}</li>`
         });
 
         ul_data = ul_data.replace(/(\blist-item\b)(?!.*[\r\n]*.*\1)/, "list-item border-none");
@@ -51,11 +51,16 @@ function disableChoice() {
 
 function sendMsg(){
 
+    const typeField = document.getElementById('chat-prompt');
+    askQuestion(typeField.value);
+
+}
+
+function askQuestion(question){
     const main = document.querySelector('main');
     const inputField = document.getElementById('chat-prompt');
     const userField = document.createElement('div');
     const aiField = document.createElement('div');
-    const usrInput = inputField.value;
 
     userField.classList.add("chat-item");
     userField.classList.add("chat-user");
@@ -63,7 +68,7 @@ function sendMsg(){
 
     userField.innerHTML = `
         <div class="chat-body user">
-            ${usrInput}
+            ${question}
         </div>
     `
 
@@ -81,7 +86,7 @@ function sendMsg(){
     main.appendChild(aiField);
     main.scrollTop = main.scrollHeight;
 
-    fetch(`https://api-wn.tsmc.n0b.me/ask?question=${encodeURIComponent(usrInput)}`)
+    fetch(`https://api-wn.tsmc.n0b.me/ask?question=${encodeURIComponent(question)}`)
     .then( result => { return result.json() })
     .then( data => {
         aiField.innerHTML = `
