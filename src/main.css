@@ -12,6 +12,14 @@ header {
     width: 100vw;
 }
 
+main {
+    position: absolute;
+    top: 20%;
+    height: 60%;
+    width: 100vw;
+    overflow: scroll;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -50,6 +58,51 @@ input[type=text] {
 .footer-item {
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+.chat-item {
+    margin: 1rem;
+    display: flex;
+}
+
+.chat-body {
+    max-width: 60%;
+    margin-left: 1rem;
+    border-radius: 14px;
+    border: 1px solid #8B68AC;
+    padding: 1rem;
+    word-wrap: break-word;
+}
+
+.chat-user {
+    justify-content: end;
+}
+
+.user {
+    border-radius: 14px;
+    border: 1px solid #D18DB4;
+    background: #FBD8EC;
+}
+
+.ai {
+    margin-right: 2rem;
+}
+
+.img-container {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(139, 104, 172, 0.50);
+}
+
+.img-container > img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
 
 #back-arrow {
