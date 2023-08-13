@@ -1,5 +1,8 @@
 name: Pipeline
 
+env:
+  IMG_NAME: WeatherNeed
+
 on:
   push:
     branches: [ main, n0-dev ]
