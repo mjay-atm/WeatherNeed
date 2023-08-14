@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/src/main.css">
 </head>
 <body>
-    
+
     <header>        
 
         <svg class="header-hero" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 391 119" fill="none">
@@ -25,73 +25,76 @@
             </defs>
         </svg>
 
-        <svg id="back-arrow" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-            <path d="M27.7083 17.5H7.29163" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M17.5 27.7084L7.29163 17.5L17.5 7.29169" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-
         <div class="title">
             <h2>WEATHER NEED</h2>
             <p>—Whatever You Need—</p>
         </div>
 
     </header>
-
-    <main>
-        <div class="chat-item">
-            <div class="img-container">
-                <img class="need-icon" height="30px" width="45px" src="/img/need.png" alt="need-icon">
-            </div>
-            <div class="chat-body ai">
-                今天好嗎？想問我什麼呢？
-            </div>
-        </div>
-        <div class="chat-item chat-user">
-            <div class="chat-body user">
-                今天天氣如何?
-            </div>
-        </div>
-        <div class="chat-item">
-            <div class="img-container">
-                <img class="need-icon" height="30px" width="45px" src="/img/need.png" alt="need-icon">
-            </div>
-            <div class="chat-body ai">
-                今天的天氣晴朗，溫度適中。建議您外出時注意防曬，並隨身攜帶一把雨傘，以防突然的降雨。祝您有個愉快的一天！
-            </div>
-        </div>
-
-    </main>
-
-    <div id="choice-response" class="d-op" onclick="disableChoice()">
-        <div id="choice-response-field" class="container response choice-drop"></div>
-    </div>
+    
+    <main></main>
 
     <footer>
-        
-        <div id="footer-container">
-
-            <div id="footer-choice">
-                <img onclick="choice('eat');" src="/img/eat.png" alt="">
-                <img onclick="choice('short');" src="/img/short.png" alt="">
-                <img onclick="choice('live');" src="/img/live.png" alt="">
-                <img onclick="choice('walk');" src="/img/walk.png" alt="">
-                <img onclick="choice('edu');" src="/img/edu.png" alt="">
-                <img onclick="choice('fun');" src="/img/fun.png" alt="">
-            </div>
-                
-            <div id="footer-type">
-    
-                <input class="footer-item" id="chat-prompt" type="text" placeholder="Type here...">
-    
-                <div class="footer-item" id="submit" onclick="sendMsg()">
-                    <svg id="submit-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" fill="none">
-                        <path d="M31.1666 2.83334L15.5833 18.4167" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M32.1666 2.83334L22.25 31.1667L16.5833 18.4167L3.83331 12.75L32.1666 2.83334Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
+        <div id="footer-contianer">
+            <a href="wn.html">
+                <svg id="tool-chat" xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 78 78" fill="none">
+                    <g clip-path="url(#clip0_257_7)">
+                    <path d="M34.8294 63.6933C36.8063 66.6827 41.1937 66.6827 43.1706 63.6933L57.3847 42.1987C67.0745 27.5459 56.5668 8 39 8C21.4332 8 10.9255 27.5459 20.6153 42.1987L34.8294 63.6933Z" fill="#D18DB4"/>
+                    <circle cx="39.5" cy="28.5" r="2.5" fill="#F7F7F7"/>
+                    <circle cx="31.5" cy="28.5" r="2.5" fill="#F7F7F7"/>
+                    <circle cx="47.5" cy="28.5" r="2.5" fill="#F7F7F7"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_257_7">
+                    <rect width="78" height="78" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </a>
+            <svg id="tool-bar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 78" fill="none">
+                <g filter="url(#filter0_i_38_9633)">
+                <path d="M0 0H149.671C152.95 0 156.021 1.60796 157.889 4.30324L187.328 46.7742C191.28 52.4754 199.694 52.5194 203.705 46.8597L233.927 4.21771C235.802 1.5722 238.843 0 242.085 0H390V68C390 73.5229 385.523 78 380 78H204.904C202.991 78 201.21 77.0255 200.18 75.4147C197.974 71.9676 192.938 71.9676 190.732 75.4147C189.701 77.0255 187.92 78 186.008 78H10C4.47715 78 0 73.5229 0 68V0Z" fill="white"/>
+                </g>
+                <defs>
+                <filter id="filter0_i_38_9633" x="0" y="0" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="1"/>
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.545098 0 0 0 0 0.407843 0 0 0 0 0.67451 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_38_9633"/>
+                </filter>
+                </defs>
+            </svg>
+            
+            <div id="tool-nav">
+                <svg class="nav-item" onclick="nav(this)" wn-data="home" xmlns="http://www.w3.org/2000/svg" width="77" height="78" viewBox="0 0 77 78" fill="none">
+                    <path d="M23 37.1033C23 35.4717 23.7961 33.9428 25.1327 33.0071L35.1327 26.0071C36.8543 24.802 39.1457 24.802 40.8673 26.0071L50.8673 33.0071C52.2039 33.9428 53 35.4717 53 37.1033V51C53 51.7956 52.6488 52.5587 52.0237 53.1213C51.3986 53.6839 50.5507 54 49.6667 54H26.3333C25.4493 54 24.6014 53.6839 23.9763 53.1213C23.3512 52.5587 23 51.7956 23 51V37.1033Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33 54V44C33 41.2386 35.2386 39 38 39V39C40.7614 39 43 41.2386 43 44V54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="nav-item" onclick="nav(this)" wn-data="map" width="77" height="78" viewBox="0 0 77 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M51.625 36.5833C51.625 43.8444 44.9846 50.3677 41.1503 53.5291C39.5929 54.8132 37.4071 54.8132 35.8497 53.5291C32.0154 50.3677 25.375 43.8444 25.375 36.5833C25.375 33.1023 26.7578 29.764 29.2192 27.3025C31.6806 24.8411 35.019 23.4583 38.5 23.4583C41.981 23.4583 45.3194 24.8411 47.7808 27.3025C50.2422 29.764 51.625 33.1023 51.625 36.5833Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M38.5 40.9583C40.9162 40.9583 42.875 38.9996 42.875 36.5833C42.875 34.1671 40.9162 32.2083 38.5 32.2083C36.0838 32.2083 34.125 34.1671 34.125 36.5833C34.125 38.9996 36.0838 40.9583 38.5 40.9583Z" fill="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>               
+                <div style="width: 77px"></div>     
+                <svg class="nav-item" onclick="nav(this)" wn-data="trand" width="77" height="78" viewBox="0 0 77 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_23_258)">
+                    <path d="M54.4413 30.5635L40.7647 44.4176L33.5666 37.126L22.7693 48.0635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.8035 30.5635H54.4413V39.3135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_23_258">
+                    <rect width="34.5513" height="35" fill="white" transform="translate(21.3296 21.8135)"/>
+                    </clipPath>
+                    </defs>
+                </svg>                    
+                <svg class="nav-item" onclick="nav(this)" wn-data="profile" width="77" height="78" viewBox="0 0 77 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50.1666 52.625V49.7083C50.1666 48.1612 49.552 46.6775 48.458 45.5835C47.3641 44.4896 45.8803 43.875 44.3333 43.875H32.6666C31.1195 43.875 29.6358 44.4896 28.5418 45.5835C27.4478 46.6775 26.8333 48.1612 26.8333 49.7083V52.625" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M38.5001 38.0417C41.7217 38.0417 44.3334 35.43 44.3334 32.2083C44.3334 28.9867 41.7217 26.375 38.5001 26.375C35.2784 26.375 32.6667 28.9867 32.6667 32.2083C32.6667 35.43 35.2784 38.0417 38.5001 38.0417Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
         </div>
-            
     </footer>
 
     <script src="/src/main.js"></script>

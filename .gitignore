@@ -4,3 +4,4 @@ __pycache__/
 .env
 push.sh
 .venv/
+map.html

@@ -101,3 +101,32 @@ function askQuestion(question){
     });
 
 }
+
+function chatBack() {
+    window.history.go(-1)
+}
+
+function nav(item) {
+
+    const target = item.getAttribute('wn-data');
+    navDeselectAll();
+
+    if (target == "trand"){
+        item.style.stroke = "#8C68AC";
+    }else{
+        item.style.fill = "#8C68AC";
+    }
+
+}
+
+function navDeselectAll(){
+    const navTools = document.getElementsByClassName('nav-item');
+
+    for(let i = 0; i < navTools.length; i++){
+        navTools[i].style.stroke="#9A9A9B";
+        navTools[i].style.fill="none";
+    }
+
+}
+
+navDeselectAll();
