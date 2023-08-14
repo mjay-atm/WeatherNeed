@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <title>Weather Need</title>
     <link rel="stylesheet" href="/src/main.css">
 </head>
@@ -32,7 +35,7 @@
 
     </header>
     
-    <main></main>
+    <main id="main"></main>
 
     <footer>
         <div id="footer-contianer">
@@ -69,11 +72,11 @@
             </svg>
             
             <div id="tool-nav">
-                <svg class="nav-item" onclick="nav(this)" wn-data="home" xmlns="http://www.w3.org/2000/svg" width="77" height="78" viewBox="0 0 77 78" fill="none">
+                <svg id="nav-home" class="nav-item" onclick="nav(this)" wn-data="home" xmlns="http://www.w3.org/2000/svg" width="77" height="78" viewBox="0 0 77 78" fill="none">
                     <path d="M23 37.1033C23 35.4717 23.7961 33.9428 25.1327 33.0071L35.1327 26.0071C36.8543 24.802 39.1457 24.802 40.8673 26.0071L50.8673 33.0071C52.2039 33.9428 53 35.4717 53 37.1033V51C53 51.7956 52.6488 52.5587 52.0237 53.1213C51.3986 53.6839 50.5507 54 49.6667 54H26.3333C25.4493 54 24.6014 53.6839 23.9763 53.1213C23.3512 52.5587 23 51.7956 23 51V37.1033Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M33 54V44C33 41.2386 35.2386 39 38 39V39C40.7614 39 43 41.2386 43 44V54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <svg class="nav-item" onclick="nav(this)" wn-data="map" width="77" height="78" viewBox="0 0 77 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg id="nav-map" class="nav-item" onclick="nav(this)" wn-data="map" width="77" height="78" viewBox="0 0 77 78" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M51.625 36.5833C51.625 43.8444 44.9846 50.3677 41.1503 53.5291C39.5929 54.8132 37.4071 54.8132 35.8497 53.5291C32.0154 50.3677 25.375 43.8444 25.375 36.5833C25.375 33.1023 26.7578 29.764 29.2192 27.3025C31.6806 24.8411 35.019 23.4583 38.5 23.4583C41.981 23.4583 45.3194 24.8411 47.7808 27.3025C50.2422 29.764 51.625 33.1023 51.625 36.5833Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M38.5 40.9583C40.9162 40.9583 42.875 38.9996 42.875 36.5833C42.875 34.1671 40.9162 32.2083 38.5 32.2083C36.0838 32.2083 34.125 34.1671 34.125 36.5833C34.125 38.9996 36.0838 40.9583 38.5 40.9583Z" fill="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>               
@@ -98,6 +101,9 @@
     </footer>
 
     <script src="/src/main.js"></script>
+    <script>
+        nav(document.getElementById('nav-map'));
+    </script>
 
 </body>
 </html>

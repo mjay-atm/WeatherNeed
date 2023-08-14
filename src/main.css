@@ -5,6 +5,10 @@
     list-style: none;
 }
 
+h0 {
+    font-size: 40px;
+}
+
 header {
     position: absolute;
     top: 0;
@@ -40,6 +44,40 @@ input[type=text] {
     font-weight: 400;
 }
 
+.icon-success::before {
+    content: "●";
+    position: relative;
+    color: #00CF2E;
+    font-size: 20px;
+}
+
+.icon-danger::before {
+    content: "●";
+    position: relative;
+    color: #F00;
+    font-size: 20px;
+}
+
+.icon-warn::before {
+    content: "●";
+    position: relative;
+    color: #FAFF00;
+    font-size: 20px;
+}
+
+.icon-ok::before {
+    content: "●";
+    position: relative;
+    color: #FFAB0B;
+    font-size: 20px;
+}
+
+.contianer {
+    margin: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
 .header-hero {
     display: block;
     position: absolute;
@@ -63,7 +101,8 @@ input[type=text] {
 }
 
 .container {
-    width: 80%;
+    margin: auto;
+    height: 100%;
 }
 
 .list {
@@ -94,8 +133,49 @@ input[type=text] {
     opacity: 0;
 }
 
+.d-flex {
+    display: flex;
+}
+
+.light {
+    border-radius: 15px;
+    border: 1px solid rgba(139, 104, 172, 0.10);
+    background: var(--overlaypink-purple, linear-gradient(131deg, rgba(209, 141, 180, 0.15) 0%, rgba(139, 104, 172, 0.15) 100%), #FFF);
+    box-shadow: 5px 10px 50px 5px rgba(139, 104, 172, 0.20);
+}
+
+.dark {
+    border-radius: 15px;
+    background: var(--main, linear-gradient(131deg, #D18DB4 0%, #8B68AC 100%));
+    box-shadow: 5px 5px 50px 5px rgba(139, 104, 172, 0.10);
+    color: white;
+}
+
+.card {
+    min-height: 165px;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.card > img {
+    margin: 1rem;
+}
+
+.card-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .border-none {
     border: none !important;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 .chat-item {
@@ -153,6 +233,67 @@ input[type=text] {
 
 .choice-drop {
     transform: translateY(100vh);
+}
+
+.route-drop {
+    transform: translateY(-30vh);
+}
+
+.live-need-item {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+.live-need-body {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.route-input {
+    border-radius: 0px;
+}
+
+.route-item {
+    margin: .5rem;
+}
+
+.route-item > input{
+    border-radius: 5px;
+    background: var(--overlaypink-purple, linear-gradient(131deg, rgba(209, 141, 180, 0.15) 0%, rgba(139, 104, 172, 0.15) 100%), #FFF);
+}
+
+.route-btn {
+    border-radius: 15px;
+    background: var(--overlaypink-purple, linear-gradient(131deg, rgba(209, 141, 180, 0.15) 0%, rgba(139, 104, 172, 0.15) 100%), #FFF);
+    color: #8B68AC;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: .25rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    margin-left: .5rem;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+}
+
+#location-select {
+    margin: 1rem;
+    color: #132847;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 129.412% */
+    letter-spacing: -0.408px;
 }
 
 #tool-bar {
@@ -253,4 +394,62 @@ input[type=text] {
     align-items: center;
     justify-content: center;
     transition: 1s;
+}
+
+#weather-card {
+
+    display: flex;
+
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#route {
+    position: absolute;
+    bottom: 15%;
+    right: 1rem;
+    z-index: 999;
+}
+
+#route-field {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    width: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    border-radius: 15px;
+    color: #8B68AC;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: 1s;
+    padding-top: 1rem;
+}
+
+#explore-route {
+    border-radius: 40px;
+    background: linear-gradient(180deg, #F7CE76 0%, #D18DB4 100%);
+    color: #FFF;
+    text-align: center;
+    font-family: ABeeZee;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+    letter-spacing: -0.408px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 1rem;
 }
