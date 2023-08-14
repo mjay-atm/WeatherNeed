@@ -1,6 +1,14 @@
 var lon = 121.564558;
 var lat = 25.03746;
 var map = undefined;
+var iconMap = undefined;
+
+async function init() {
+    const query = await fetch('/data/weather-icon.json');
+    const data = await query.json();
+
+    iconMap = data;
+}
 
 function choice(item) {
 
@@ -315,18 +323,26 @@ function navigate() {
     getRoute(document.getElementById('route-method').value, document.getElementById('route-start').value, document.getElementById('route-end').value);
 }
 
-function drawIcon(map, route){
+async function drawIcon(map, route){
 
-    step = Math.floor(route.length / 10);
+    step = Math.floor(route.length / 5);
 
     for(let i = 0; i < route.length; i += step){
         
         const el = document.createElement('div');
+
+        const query = await fetch(`https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${lon}&hourly=weathercode&timezone=Asia%2FSingapore`);
+        const data = await query.json();
+        const d = new Date();
+        let hour = d.getHours();
+
+        console.log(`${iconMap[data.hourly.weathercode[hour]].day.image}`)
+
         el.className = 'marker';
-        el.style.backgroundImage = `url(https://worldweather.wmo.int/images/1.png)`
+        el.style.backgroundImage = `url(${iconMap[data.hourly.weathercode[hour]].day.image})`;
         el.style.width = '50px';
         el.style.height = '50px';
-        // el.style.backgroundSize = '100%';
+        el.style.backgroundSize = '100%';
 
         new mapboxgl.Marker(el)
         .setLngLat(route[i])
@@ -344,5 +360,6 @@ const randomBytes = (count) => {
   	return result;
 };
 
+init();
 navDeselectAll();
 initGeolocation();
