@@ -22,7 +22,20 @@
             Department: Today, <span id='date-time'></span>
         </span>
     </div>
-    <div id="explore-route" onclick="navigate()">
+    <div class="explore-route" onclick="navigate()">
         探索規劃
+    </div>
+</div>
+<div id="estimate-route" class="choice-drop">
+    <div id="estimate-body">
+        <div class="estimate-body-item">
+            <span id="estimate-min">5</span> mins ( <span id="estimate-length">1.8</span> km)
+        </div>
+        <div class="estimate-body-item">
+            碳排放量 <span id="estimate-carbon">264.6</span>g
+        </div>
+    </div>
+    <div class="explore-route" onclick="startNav()">
+        開始導航
     </div>
 </div>

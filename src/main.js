@@ -278,7 +278,9 @@ async function getRoute(method, start, end) {
     const data = json.routes[0];
     const route = data.geometry.coordinates;
 
+    document.getElementById('estimate-route').classList.remove('choice-drop');
     drawIcon(map, route);
+    calEst(data, method);
 
     const geojson = {
         type: 'Feature',
@@ -354,6 +356,35 @@ const randomBytes = (count) => {
   	return result;
 };
 
+function calEst(data, method) {
+
+    const estMin = document.getElementById('estimate-min');
+    const estLen = document.getElementById('estimate-length');
+    const estCar = document.getElementById('estimate-carbon');
+
+    console.log(estMin);
+
+    const carMap = {
+        'driving': 147, 
+        'cycling': 15,
+        'walking': 5,
+    }
+
+    estMin.innerHTML = Math.floor(data.duration/60);
+    estLen.innerHTML = Math.floor(data.distance/1000);
+    estCar.innerHTML = Math.floor(data.distance/1000 * carMap[method]);
+}
+
+function startNav() {
+    alert("此功能會過度消耗API，暫時暫停使用");
+    document.getElementById('estimate-route').classList.add('choice-drop');
+
+    map.fitBounds([
+        [lon - 0.01, lat + 0.01],
+        [lon + 0.01, lat - 0.01],
+    ]);
+
+}
 init();
 navDeselectAll();
 initGeolocation();
