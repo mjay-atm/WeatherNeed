@@ -1,0 +1,26 @@
+<div id="map"></div>
+<div id="route">
+    <img src="/img/route.svg" alt="route" onclick="routeTo()">
+</div>
+<div id="route-field" class="route-drop">
+    <div class="route-item">
+        A <input id="route-start" type="text" class="route-input light">
+    </div>
+    <div class="route-item">
+        B <input id="route-end" type="text" class="route-input light">
+    </div>
+    <div class="route-item">
+        <select name="method" id="light">
+            <option value="car">汽車</option>
+        </select>
+        <!-- <span class="route-btn">
+            顯示順序
+        </span> -->
+        <span class="route-btn">
+            Department: Today, <span id='date-time'></span>
+        </span>
+    </div>
+    <div id="explore-route">
+        探索規劃
+    </div>
+</div>
