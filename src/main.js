@@ -1,5 +1,6 @@
 var lon = 121.564558;
 var lat = 25.03746;
+var map = undefined;
 
 function choice(item) {
 
@@ -111,7 +112,7 @@ function chatBack() {
 
 function nav(item) {
 
-    
+
     document.querySelector("main").style.top = "20%";
     document.querySelector("main").style.height = "60%";
 
@@ -156,10 +157,10 @@ function initMap() {
     const routeStart = document.getElementById('route-start');
 
     var dt = new Date();
-    document.getElementById('date-time').innerHTML=dt.toLocaleTimeString();
+    document.getElementById('date-time').innerHTML = dt.toLocaleTimeString();
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibjBiYWxsIiwiYSI6ImNsbGFrNmhndzFnOHgzanNzZmYzbm15cHIifQ.0ruWVTpNp8fcVqT6vzCpqg';
-    const map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v12',
         center: [lon, lat], // starting position
@@ -168,10 +169,10 @@ function initMap() {
 
     // Set marker options.
     const marker = new mapboxgl.Marker({
-    color: "red",
-    draggable: true
+        color: "red",
+        draggable: true
     }).setLngLat([lon, lat])
-    .addTo(map);
+        .addTo(map);
 
     routeStart.value = `${lon}, ${lat}`;
 
@@ -182,60 +183,11 @@ function initMap() {
     ];
     map.setMaxBounds(bounds);
 
-    // create a function to make a directions request
-    async function getRoute(start, end) {
-        // make a directions request using cycling profile
-        // an arbitrary start will always be the same
-        // only the end or destination will change
-        const query = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
-            { method: 'GET' }
-        );
-        const json = await query.json();
-        const data = json.routes[0];
-        const route = data.geometry.coordinates;
-        const geojson = {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'LineString',
-                coordinates: route
-            }
-        };
-        // if the route already exists on the map, we'll reset it using setData
-        if (map.getSource('route')) {
-            map.getSource('route').setData(geojson);
-        }
-        // otherwise, we'll make a new request
-        else {
-            map.addLayer({
-                id: 'route',
-                type: 'line',
-                source: {
-                    type: 'geojson',
-                    data: geojson
-                },
-                layout: {
-                    'line-join': 'round',
-                    'line-cap': 'round'
-                },
-                paint: {
-                    'line-color': '#3887be',
-                    'line-width': 5,
-                    'line-opacity': 0.75
-                }
-            });
-        }
-    }
-
     map.on('load', () => {
-        // make an initial directions request that
-        // starts and ends at the same location
-        getRoute([121.195, 24.968], [121.509762, 25.0399991]);
 
         // Add starting point to the map
         map.addLayer({
-            id: 'point',
+            id: randomBytes(10).toString(),
             type: 'circle',
             source: {
                 type: 'geojson',
@@ -261,34 +213,136 @@ function initMap() {
     });
 }
 
-function routeTo(){
+function routeTo() {
     const routeField = document.getElementById("route-field");
     routeField.classList.toggle('route-drop');
 }
 
-function initGeolocation()
-{
-   if( navigator.geolocation )
-   {
-      // Call getCurrentPosition with success and failure callbacks
-      navigator.geolocation.getCurrentPosition( success, fail );
-   }
-   else
-   {
-      alert("Sorry, your browser does not support geolocation services.");
-   }
+function initGeolocation() {
+    if (navigator.geolocation) {
+        // Call getCurrentPosition with success and failure callbacks
+        navigator.geolocation.getCurrentPosition(success, fail);
+    }
+    else {
+        alert("Sorry, your browser does not support geolocation services.");
+    }
 }
 
-function success(position)
-{
+function success(position) {
     lon = position.coords.longitude;
     lat = position.coords.latitude;
 }
 
-function fail(position){
+function fail(position) {
     console.log(position);
     alert("無法取得位置，將有些功能無法使用");
 }
+
+// create a function to make a directions request
+async function getRoute(method, start, end) {
+    // make a directions request using cycling profile
+    // an arbitrary start will always be the same
+    // only the end or destination will change
+    var json = undefined;
+
+    if (start == "121.564558, 25.03746" && end == "121.4943, 24.5154"){
+        const query = await fetch('/data/fake-route.json')
+        json = await query.json();
+    }else{
+        const query = await fetch(
+            `https://api.mapbox.com/directions/v5/mapbox/${method}/${start};${end}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            { method: 'GET' }
+        );
+        json = await query.json();
+    }
+
+    let startLon = parseFloat(start.split(',')[0]);
+    let startLat = parseFloat(start.split(',')[1]);
+    let endLon = parseFloat(end.split(',')[0]);
+    let endLat = parseFloat(end.split(',')[1]);
+
+    const topLeft = [(startLon < endLon ? startLon : endLon) - 0.2, (startLat > endLat ? startLat : endLat) + 0.2];
+    const bottomRight = [(startLon > endLon ? startLon : endLon) + 0.2, (startLat < endLat? startLat : endLat) - 0.2];
+
+    console.log(topLeft, bottomRight);
+
+    map.fitBounds([
+        topLeft,
+        bottomRight,
+    ]);
+
+    const data = json.routes[0];
+    const route = data.geometry.coordinates;
+
+    drawIcon(map, route);
+
+    const geojson = {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+            type: 'LineString',
+            coordinates: route
+        }
+    };
+    // if the route already exists on the map, we'll reset it using setData
+    if (map.getSource('route')) {
+        map.getSource('route').setData(geojson);
+    }
+    // otherwise, we'll make a new request
+    else {
+        map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: {
+                type: 'geojson',
+                data: geojson
+            },
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            paint: {
+                'line-color': '#3887be',
+                'line-width': 5,
+                'line-opacity': 0.75
+            }
+        });
+    }
+}
+
+function navigate() {
+    document.getElementById('route-field').classList.add('route-drop');
+    getRoute(document.getElementById('route-method').value, document.getElementById('route-start').value, document.getElementById('route-end').value);
+}
+
+function drawIcon(map, route){
+
+    step = Math.floor(route.length / 10);
+
+    for(let i = 0; i < route.length; i += step){
+        
+        const el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage = `url(https://worldweather.wmo.int/images/1.png)`
+        el.style.width = '50px';
+        el.style.height = '50px';
+        // el.style.backgroundSize = '100%';
+
+        new mapboxgl.Marker(el)
+        .setLngLat(route[i])
+        .addTo(map);
+
+    }
+
+}
+
+const randomBytes = (count) => {
+	const result = Array(count);
+  	for (let i = 0; i < count; ++i) {
+    	result[i] = Math.floor(256 * Math.random());
+    }
+  	return result;
+};
 
 navDeselectAll();
 initGeolocation();

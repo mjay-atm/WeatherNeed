@@ -7,11 +7,13 @@
         A <input id="route-start" type="text" class="route-input light">
     </div>
     <div class="route-item">
-        B <input id="route-end" type="text" class="route-input light">
+        B <input id="route-end" type="text" class="route-input light" value="121.4943, 24.5154">
     </div>
     <div class="route-item">
-        <select name="method" id="light">
-            <option value="car">汽車</option>
+        <select name="method" id="route-method" class="light">
+            <option value="driving">汽車</option>
+            <option value="walking">走路</option>
+            <option value="cycling">腳踏車</option>
         </select>
         <!-- <span class="route-btn">
             顯示順序
@@ -20,7 +22,7 @@
             Department: Today, <span id='date-time'></span>
         </span>
     </div>
-    <div id="explore-route">
+    <div id="explore-route" onclick="navigate()">
         探索規劃
     </div>
 </div>
