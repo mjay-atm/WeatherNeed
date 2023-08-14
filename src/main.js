@@ -42,7 +42,6 @@ function choice(item) {
             ul_data = ul_data.replace(/(\blist-item\b)(?!.*[\r\n]*.*\1)/, "list-item border-none");
 
             ul.innerHTML = ul_data;
-            console.log(ul);
             choiceField.appendChild(ul);
             choiceField.classList.remove('choice-drop');
 
@@ -242,7 +241,6 @@ function success(position) {
 }
 
 function fail(position) {
-    console.log(position);
     alert("無法取得位置，將有些功能無法使用");
 }
 
@@ -271,8 +269,6 @@ async function getRoute(method, start, end) {
 
     const topLeft = [(startLon < endLon ? startLon : endLon) - 0.2, (startLat > endLat ? startLat : endLat) + 0.2];
     const bottomRight = [(startLon > endLon ? startLon : endLon) + 0.2, (startLat < endLat? startLat : endLat) - 0.2];
-
-    console.log(topLeft, bottomRight);
 
     map.fitBounds([
         topLeft,
@@ -335,8 +331,6 @@ async function drawIcon(map, route){
         const data = await query.json();
         const d = new Date();
         let hour = d.getHours();
-
-        console.log(`${iconMap[data.hourly.weathercode[hour]].day.image}`)
 
         el.className = 'marker';
         el.style.backgroundImage = `url(${iconMap[data.hourly.weathercode[hour]].day.image})`;
