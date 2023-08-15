@@ -133,6 +133,13 @@ function nav(item) {
         item.style.fill = "#8C68AC";
     }
 
+    if (target == 'profile'){
+
+        alert("此功能暫時不公開");
+
+        return;
+    }
+
     fetch(`${target}.html`)
         .then(result => { return result.text() })
         .then(data => {
