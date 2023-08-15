@@ -3,7 +3,7 @@ import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.main import generate_response, generate_response_bycity, generate_city_report, generate_taiwan_report, generate_lifetopic_report
+from app.main import generate_response, generate_response_bycity, cwb_city_report
 
 app = FastAPI()
 
@@ -40,7 +40,7 @@ async def ask_city(city: str, question: str):
 
 @app.get("/city-report")
 async def cityReport(city: str):
-    ans = generate_city_report(city, [])
+    ans = cwb_city_report(city)
     return {
         "data": ans
     }

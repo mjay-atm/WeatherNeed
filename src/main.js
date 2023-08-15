@@ -148,6 +148,11 @@ function nav(item) {
 
             if (target == 'map') {
                 initMap();
+                const end = document.getElementById('route-end');
+                const selectField = document.getElementById('route-location');
+                selectField.onchange = e => {
+                    end.value = selectField.value;
+                };
             } else if (target == 'home') {
                 const selectField = document.getElementById('location-select');
                 selectField.onchange = e => {
@@ -355,7 +360,7 @@ function calEst(data, method) {
 
     estMin.innerHTML = Math.floor(data.duration / 60);
     estLen.innerHTML = Math.floor(data.distance / 1000);
-    estCar.innerHTML = Math.floor(data.distance / 1000 * carMap[method]);
+    estCar.innerHTML = Math.floor(data.distance / 1000 * carMap[method])/100;
 }
 
 function startNav() {

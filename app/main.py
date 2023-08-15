@@ -56,6 +56,12 @@ def generate_response(prompt, chat_history):
     #print(chat_history)
     return "", chat_history
 
+def cwb_city_report(city_choose1):
+    report = city_report(WEATHER_API_KEY, save_dir, city_choose1, dic_city2no)
+    print(report)
+
+    return report
+
 def generate_response_bycity(prompt, city_choose1, chat_history):
     #global conversation_history
     conversation_history = []
