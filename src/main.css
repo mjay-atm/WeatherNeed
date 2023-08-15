@@ -309,8 +309,8 @@ input[type=text] {
 
 #tool-bar {
     fill: #FFF;
-    height: 78px;
-    width: 100%;
+    height: auto;
+    width: 100vw;
     position: absolute;
     bottom: 0;
     left: 0;

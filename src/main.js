@@ -317,7 +317,7 @@ async function drawIcon(map, route) {
 
         const el = document.createElement('div');
 
-        const query = await fetch(`https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${lon}&hourly=weathercode&timezone=Asia%2FSingapore`);
+        const query = await fetch(`https://api.open-meteo.com/v1/meteofrance?latitude=${route[i][1]}&longitude=${route[i][0]}&hourly=weathercode&timezone=Asia%2FSingapore`);
         const data = await query.json();
         const d = new Date();
         let hour = d.getHours();
@@ -349,8 +349,6 @@ function calEst(data, method) {
     const estMin = document.getElementById('estimate-min');
     const estLen = document.getElementById('estimate-length');
     const estCar = document.getElementById('estimate-carbon');
-
-    console.log(estMin);
 
     const carMap = {
         'driving': 147,
