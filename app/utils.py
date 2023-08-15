@@ -53,6 +53,12 @@ def load_topic(topic, topic_dir):
     return article
     
 
+no_list = [str(i).zfill(3) for i in range(9, 31)]
+dic_city2no = {}
+with open(f'city_list.txt', 'r') as f:
+    for i, city in enumerate(f.readlines()):
+        dic_city2no[city.replace("\n", "")] = no_list[i]
+
 if __name__ == '__main__':
     
     load_dotenv()

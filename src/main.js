@@ -97,7 +97,7 @@ function askQuestion(question) {
     main.appendChild(aiField);
     main.scrollTop = main.scrollHeight;
 
-    fetch(`https://api-wn.tsmc.n0b.me/ask?question=${encodeURIComponent(question)}`)
+    fetch(`https://api-wn.tsmc.n0b.me/ask/${getCookie('wn-city')}?question=${encodeURIComponent(question)}`)
         .then(result => { return result.json() })
         .then(data => {
             aiField.innerHTML = `
@@ -141,6 +141,11 @@ function nav(item) {
 
             if (target == 'map') {
                 initMap();
+            } else if (target == 'home') {
+                const selectField = document.getElementById('location-select');
+                selectField.onchange = e => {
+                    setCookie('wn-city', selectField.value, 1);
+                };
             }
         });
 
@@ -222,10 +227,10 @@ async function getRoute(method, start, end) {
     // only the end or destination will change
     var json = undefined;
 
-    if (start == "121.564558, 25.03746" && end == "121.4943, 24.5154"){
+    if (start == "121.564558, 25.03746" && end == "121.4943, 24.5154") {
         const query = await fetch('/data/fake-route.json')
         json = await query.json();
-    }else{
+    } else {
         const query = await fetch(
             `https://api.mapbox.com/directions/v5/mapbox/${method}/${start};${end}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
             { method: 'GET' }
@@ -239,7 +244,7 @@ async function getRoute(method, start, end) {
     let endLat = parseFloat(end.split(',')[1]);
 
     const topLeft = [(startLon < endLon ? startLon : endLon) - 0.2, (startLat > endLat ? startLat : endLat) + 0.2];
-    const bottomRight = [(startLon > endLon ? startLon : endLon) + 0.2, (startLat < endLat? startLat : endLat) - 0.2];
+    const bottomRight = [(startLon > endLon ? startLon : endLon) + 0.2, (startLat < endLat ? startLat : endLat) - 0.2];
 
     map.fitBounds([
         topLeft,
@@ -292,12 +297,12 @@ function navigate() {
     getRoute(document.getElementById('route-method').value, document.getElementById('route-start').value, document.getElementById('route-end').value);
 }
 
-async function drawIcon(map, route){
+async function drawIcon(map, route) {
 
     step = Math.floor(route.length / 5);
 
-    for(let i = 0; i < route.length; i += step){
-        
+    for (let i = 0; i < route.length; i += step) {
+
         const el = document.createElement('div');
 
         const query = await fetch(`https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${lon}&hourly=weathercode&timezone=Asia%2FSingapore`);
@@ -312,19 +317,19 @@ async function drawIcon(map, route){
         el.style.backgroundSize = '100%';
 
         new mapboxgl.Marker(el)
-        .setLngLat(route[i])
-        .addTo(map);
+            .setLngLat(route[i])
+            .addTo(map);
 
     }
 
 }
 
 const randomBytes = (count) => {
-	const result = Array(count);
-  	for (let i = 0; i < count; ++i) {
-    	result[i] = Math.floor(256 * Math.random());
+    const result = Array(count);
+    for (let i = 0; i < count; ++i) {
+        result[i] = Math.floor(256 * Math.random());
     }
-  	return result;
+    return result;
 };
 
 function calEst(data, method) {
@@ -336,14 +341,14 @@ function calEst(data, method) {
     console.log(estMin);
 
     const carMap = {
-        'driving': 147, 
+        'driving': 147,
         'cycling': 15,
         'walking': 5,
     }
 
-    estMin.innerHTML = Math.floor(data.duration/60);
-    estLen.innerHTML = Math.floor(data.distance/1000);
-    estCar.innerHTML = Math.floor(data.distance/1000 * carMap[method]);
+    estMin.innerHTML = Math.floor(data.duration / 60);
+    estLen.innerHTML = Math.floor(data.distance / 1000);
+    estCar.innerHTML = Math.floor(data.distance / 1000 * carMap[method]);
 }
 
 function startNav() {
@@ -356,6 +361,30 @@ function startNav() {
     ]);
 
 }
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 init();
 navDeselectAll();
 initGeolocation();

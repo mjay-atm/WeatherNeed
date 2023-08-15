@@ -3,7 +3,7 @@ import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.main import generate_response, generate_city_report, generate_taiwan_report, generate_lifetopic_report
+from app.main import generate_response, generate_response_bycity, generate_city_report, generate_taiwan_report, generate_lifetopic_report
 
 app = FastAPI()
 
@@ -24,9 +24,23 @@ app.add_middleware(
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/ask")
+@app.get("/ask/")
 async def ask(question: str):
     ans = generate_response(question, [])
     return {
         "data" : ans
+    }
+
+@app.get("/ask/{city}")
+async def ask_city(city: str, question: str):
+    ans = generate_response_bycity(question, city, [])
+    return {
+        "data" : ans
+    }
+
+@app.get("/city-report")
+async def cityReport(city: str):
+    ans = generate_city_report(city, [])
+    return {
+        "data": ans
     }

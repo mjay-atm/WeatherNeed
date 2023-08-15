@@ -3,7 +3,7 @@ import os
 import openai
 import tiktoken
 from dotenv import load_dotenv  # install python_dotenv
-from app.utils import city_report, taiwan_report, load_topic
+from app.utils import city_report, taiwan_report, load_topic, dic_city2no
 
 
 ############ env setting ####################################
@@ -50,6 +50,33 @@ def generate_response(prompt, chat_history):
     response = completions.choices[0].message.content
     #conversation_history.pop(-1)
     normal_conversation_history.append({"role": "assistant", "content": response})
+    # global tokens_count
+    # tokens_count = tokens_count + len(encoding.encode(prompt + response))
+    chat_history.append((prompt, response.strip()))
+    #print(chat_history)
+    return "", chat_history
+
+def generate_response_bycity(prompt, city_choose1, chat_history):
+    #global conversation_history
+    conversation_history = []
+    r1 = city_report(WEATHER_API_KEY, save_dir, city_choose1, dic_city2no)
+    system_message = f"""
+    I'm WeatherNeed, I will use traditional chinese to response every question., and following was the weather report today:
+    1. weather report of {city_choose1} (a city in Taiwan): {r1}
+    """
+    
+    conversation_history.append({"role": "system", "content": system_message})
+    conversation_history.append({"role": "user", "content": prompt})
+    print(conversation_history)
+    completions = openai.ChatCompletion.create(
+        model='gpt-3.5-turbo',
+        # engine=choosen_engine,
+        temperature=0.2,
+        messages=conversation_history
+    )
+    response = completions.choices[0].message.content
+    #conversation_history.pop(-1)
+    conversation_history.append({"role": "assistant", "content": response})
     # global tokens_count
     # tokens_count = tokens_count + len(encoding.encode(prompt + response))
     chat_history.append((prompt, response.strip()))
