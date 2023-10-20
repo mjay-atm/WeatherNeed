@@ -205,10 +205,29 @@ function nav(item) {
                 selectField.onchange = e => {
                     setCookie('wn-city', selectField.value, 1);
                 };
+                setReport(selectField.value);
             }
         });
 
 
+}
+
+function setReport(city) {
+    const cityField = document.getElementById('report-card');
+    fetch(`https://api-wn.tsmc.n0b.me/city-report/${city}`)
+        .then(result => { return result.text() })
+        .then(data => {
+            cityField.innerHTML = `
+        <div class="card-body">
+            <h1 style="color: black;">Local Weather Report</h1>
+            <h4><br></h4>
+            <h4>
+                ${data.data[1][0][1]}
+            </h4>
+        </div>
+        `
+            main.scrollTop = main.scrollHeight;
+        });
 }
 
 function navDeselectAll() {
