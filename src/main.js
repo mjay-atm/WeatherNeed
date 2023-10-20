@@ -63,7 +63,8 @@ function disableChoice() {
 function sendMsg() {
 
     const typeField = document.getElementById('chat-prompt');
-    askQuestion(typeField.value);
+    // askQuestion(typeField.value);
+    askQuestionPure(typeField.value);
 
 }
 
@@ -98,6 +99,52 @@ function askQuestion(question) {
     main.scrollTop = main.scrollHeight;
 
     fetch(`https://api-wn.tsmc.n0b.me/ask/${getCookie('wn-city')}?question=${encodeURIComponent(question)}`)
+        .then(result => { return result.json() })
+        .then(data => {
+            aiField.innerHTML = `
+        <div class="img-container">
+            <img class="need-icon" height="30px" width="45px" src="/img/need.png" alt="need-icon">
+        </div>
+        <div class="chat-body ai">
+            ${data.data[1][0][1]}
+        </div>
+        `
+            main.scrollTop = main.scrollHeight;
+        });
+
+}
+
+function askQuestionPure(question) {
+    const main = document.querySelector('main');
+    const inputField = document.getElementById('chat-prompt');
+    const userField = document.createElement('div');
+    const aiField = document.createElement('div');
+
+    userField.classList.add("chat-item");
+    userField.classList.add("chat-user");
+    aiField.classList.add('chat-item');
+
+    userField.innerHTML = `
+        <div class="chat-body user">
+            ${question}
+        </div>
+    `
+
+    inputField.value = '';
+    main.appendChild(userField);
+
+    aiField.innerHTML = `
+    <div class="img-container">
+        <img class="need-icon" height="30px" width="45px" src="/img/need.png" alt="need-icon">
+    </div>
+    <div class="chat-body ai">
+        ...
+    </div>
+    `
+    main.appendChild(aiField);
+    main.scrollTop = main.scrollHeight;
+
+    fetch(`https://api-wn.tsmc.n0b.me/ask/?question=${encodeURIComponent(question)}`)
         .then(result => { return result.json() })
         .then(data => {
             aiField.innerHTML = `
