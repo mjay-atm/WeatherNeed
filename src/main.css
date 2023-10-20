@@ -415,6 +415,12 @@ input[type=text] {
     transition: 1s;
 }
 
+#report-card {
+
+    display: flex;
+
+}
+
 #weather-card {
 
     display: flex;
