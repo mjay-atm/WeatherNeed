@@ -1,34 +1,32 @@
 {
     "eat": [
-        "可以吃甚麼降暑呢?",
-        "外送美食選擇",
-        "室內餐廳或烤肉店的資訊",
-        "暖胃又暖心的湯品餐廳推薦",
-        "露天用餐的餐廳推薦",
-        "簡單甜點製作推薦",
-        "適合夏天的飲品"
-    ],
-    "short": [
-        "今天適合穿甚麼",
-        "涼爽穿著推薦",
-        "等等出門買飯要怎麼穿搭?"
-    ],
-    "live": [
-        "要開除濕機嗎?",
-        "冷氣度數推薦",
-        "今天適不適合出門?"
-    ],
-    "walk": [
-        "要帶雨傘嗎?",
-        "今天適合搭乘交通運輸工具嗎",
-        "去台北的最佳方式"
+        "1. What are some refreshing food options for hot weather?",
+        "2. Can you recommend some food delivery options for a rainy day?",
+        "3. Are there any indoor restaurants or barbecue places for tomorrow's thunderstorm?"
     ],
     "edu": [
-        "現在適合做甚麼?",
-        "台灣博物館推薦"
+        "1. What are some educational activities for children in the outdoors?",
+        "2. Which museums or art exhibitions can I visit in Taipei tomorrow?",
+        "3. What online learning platforms are available for self-enrichment during rainy days?"
     ],
     "fun": [
-        "好無聊喔!有甚麼好玩的地方",
-        "旅行推薦"
+        "1. What are some indoor recreational activities for a hot day?",
+        "2. Can you suggest outdoor places for fun in the rain?",
+        "3. Are there any outdoor music events in two days?"
+    ],
+    "live": [
+        "1. What are some residential areas with good air quality?",
+        "2. Which neighborhoods have parks or green spaces nearby?",
+        "3. How can I find apartments with good security measures?"
+    ],
+    "short": [
+        "1. What are some trendy and waterproof jacket brands?",
+        "2. What are some stylish and warm clothing options for cold weather?",
+        "3. Can you recommend a fashionable and sun-protective hat brand?"
+    ],
+    "walk": [
+        "1. What transportation options are available for traveling to Hualien from Taipei?",
+        "2. Are there any bike rental services near Taipei Main Station?",
+        "3. Which bus routes can I take to get to Jiufen from Taipei?"
     ]
 }
