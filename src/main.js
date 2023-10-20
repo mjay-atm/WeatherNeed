@@ -214,7 +214,7 @@ function nav(item) {
 
 function setReport(city) {
     const cityField = document.getElementById('report-card');
-    fetch(`https://api-wn.tsmc.n0b.me/city-report/${city}`)
+    fetch(`https://api-wn.tsmc.n0b.me/city-report?city=台北市`)
         .then(result => { return result.text() })
         .then(data => {
             cityField.innerHTML = `
