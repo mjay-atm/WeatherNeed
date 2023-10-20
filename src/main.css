@@ -47,21 +47,21 @@ input[type=text] {
 .icon-success::before {
     content: "●";
     position: relative;
-    color: #00CF2E;
+    color: #cf0000;
     font-size: 20px;
 }
 
 .icon-danger::before {
     content: "●";
     position: relative;
-    color: #F00;
+    color: rgb(0, 255, 30);
     font-size: 20px;
 }
 
 .icon-warn::before {
     content: "●";
     position: relative;
-    color: #FAFF00;
+    color: #09ff00;
     font-size: 20px;
 }
 
