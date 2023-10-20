@@ -204,8 +204,8 @@ function nav(item) {
                 const selectField = document.getElementById('location-select');
                 selectField.onchange = e => {
                     setCookie('wn-city', selectField.value, 1);
+                    setReport(selectField.value);
                 };
-                setReport(selectField.value);
             }
         });
 
