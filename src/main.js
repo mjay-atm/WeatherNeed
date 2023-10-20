@@ -222,7 +222,7 @@ function setReport(city) {
             <h1 style="color: black;">Local Weather Report</h1>
             <h4><br></h4>
             <h4>
-                ${data.data[1][0][1]}
+                ${result}
             </h4>
         </div>
         `
