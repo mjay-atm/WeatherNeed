@@ -9,12 +9,12 @@ def city_report(WEATHER_API_KEY, save_dir, city, dic_city2no):
     
     os.makedirs(save_dir, exist_ok=True)
     city_no = dic_city2no[city]
-    url = f'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-{city_no}?Authorization={WEATHER_API_KEY}&downloadType=WEB&format=JSON'
+    url = f'https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-C0032-{city_no}?Authorization={WEATHER_API_KEY}&downloadType=WEB&format=JSON'
     r = requests.get(url, allow_redirects=True)
     #open(json_name, 'wb').write(r.content)
     d = literal_eval(r.content.decode("utf-8"))
 
-    sentences = d['cwbopendata']['dataset']['parameterSet']['parameter']
+    sentences = d['cwaopendata']['dataset']['parameterSet']['parameter']
     article = ''
     for s in sentences:
         article += s['parameterValue']
@@ -28,12 +28,12 @@ def city_report(WEATHER_API_KEY, save_dir, city, dic_city2no):
 def taiwan_report(WEATHER_API_KEY, save_dir):
 
     os.makedirs(save_dir, exist_ok=True)
-    url = f'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-031?Authorization={WEATHER_API_KEY}&downloadType=WEB&format=JSON'
+    url = f'https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-C0032-031?Authorization={WEATHER_API_KEY}&downloadType=WEB&format=JSON'
     r = requests.get(url, allow_redirects=True)
     #open(json_name, 'wb').write(r.content)
     d = literal_eval(r.content.decode("utf-8"))
     
-    uri = d['cwbopendata']['dataset']['resource']['uri']
+    uri = d['cwaopendata']['dataset']['resource']['uri']
     r = requests.get(uri, allow_redirects=True)
     article = r.text
     article = article.replace("天氣小幫手", "")

@@ -63,8 +63,8 @@ function disableChoice() {
 function sendMsg() {
 
     const typeField = document.getElementById('chat-prompt');
-    // askQuestion(typeField.value);
-    askQuestionPure(typeField.value);
+    askQuestion(typeField.value);
+    // askQuestionPure(typeField.value);
 
 }
 
